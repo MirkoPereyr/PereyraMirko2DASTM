@@ -8,10 +8,10 @@ namespace Ejercicio01
 {
     public class Cliente
     {
-        public string dni;
-        public string nombre;
-        public string telefono;
-        public string email;
+        public string dni = string.Empty;
+        public string nombre = string.Empty;
+        public string telefono = string.Empty;
+        public string email = string.Empty;
         public DateTime fechaNacimiento;
 
         public string Dni

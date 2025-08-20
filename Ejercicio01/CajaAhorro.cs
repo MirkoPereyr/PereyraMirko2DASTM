@@ -15,5 +15,6 @@ namespace Ejercicio01
             get {  return montoMaximoExtraccion; }
             set {  montoMaximoExtraccion = value; }
         }
+
     }
 }

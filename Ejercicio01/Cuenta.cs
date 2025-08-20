@@ -8,9 +8,9 @@ namespace Ejercicio01
 {
     public abstract class Cuenta
     {
-        public string codigo;
-        public string dniTitular;
-        public decimal saldo;
+        public string codigo = string.Empty;
+        public string dniTitular = string.Empty;
+        public decimal saldo = 0;
 
         public string Codigo
         {
