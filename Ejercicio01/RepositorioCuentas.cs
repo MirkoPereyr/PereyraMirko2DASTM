@@ -45,7 +45,7 @@ namespace Ejercicio01
             cuentas.Remove(cuenta);
         }
 
-        public Cuenta BuscarCuenta(string codigo)
+        public Cuenta? BuscarCuenta(string codigo)
         {
             return cuentas.FirstOrDefault(x => x.Codigo == codigo);
         }
@@ -53,6 +53,16 @@ namespace Ejercicio01
         public bool ExisteCuenta(string codigo)
         {
             return cuentas.Any(x => x.Codigo == codigo);
+        }
+
+        public List<Cuenta> ObtenerCuentasPorDniTitular()
+        {
+            return cuentas.Where(x => x.DniTitular == x.DniTitular).ToList();
+        }
+
+        public List<Cuenta> ObtenerTodasLasCuentas()
+        {
+            return cuentas.ToList();
         }
 
 
