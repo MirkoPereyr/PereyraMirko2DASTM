@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ejercicio01
 {
-    Enum
+    public enum TipoCuenta
     {
+        CajaAhorro,
+        CuentaCorriente
     }
 }

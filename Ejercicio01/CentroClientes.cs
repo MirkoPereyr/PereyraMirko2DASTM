@@ -9,10 +9,12 @@ namespace Ejercicio01
     public class CentroClientes
     {
         private RepositorioClientes repositorioClientes;
+        private RepositorioCuentas repositorioCuentas;
 
         public CentroClientes()
         {
             repositorioClientes = new RepositorioClientes();
+            repositorioCuentas = new RepositorioCuentas();
         }
 
         public void CrearCliente(string dni, string nombre, string email, string telefono, DateTime fechaNacimiento)
@@ -23,8 +25,7 @@ namespace Ejercicio01
 					throw new ArgumentException("Todos los campos son obligatorios");
 
                 if (fechaNacimiento >= DateTime.Today)
-                    throw new ArgumentException("La fecha de nacimiento no puede ser hoy o en el futuro");
-
+                    throw new ArgumentException("La fecha de nacimiento no puede ser hoy o en el futuro.");
 
                 var client = new Cliente();
                 client.Dni = dni;
@@ -69,6 +70,10 @@ namespace Ejercicio01
                 if (string.IsNullOrWhiteSpace(dni))
                     throw new ArgumentException("El DNI es obligatorio");
 
+                var cuentasCliente = repositorioCuentas.ObtenerCuentasPorDniTitular(dni);
+                if (cuentasCliente.Any())
+                    throw new ArgumentException("No se puede eliminar un cliente con cuentas asociadas.");
+
                 repositorioClientes.EliminarCliente(dni);
             }
             catch (Exception ex)
@@ -77,7 +82,7 @@ namespace Ejercicio01
             }
         }
 
-        public Cliente BuscarClientePorDni(string dni)
+        public Cliente? BuscarClientePorDni(string dni)
         {
             return repositorioClientes.BuscarCliente(dni);
         }

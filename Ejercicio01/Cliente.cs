@@ -44,6 +44,16 @@ namespace Ejercicio01
             set { fechaNacimiento = value; }
         }
 
+        public int Edad
+        {
+            get
+            {
+                var hoy = DateTime.Today;
+                int edad = hoy.Year - fechaNacimiento.Year;
+                if (fechaNacimiento > hoy.AddYears(-edad)) edad--;
+                return edad;
+            }
+        }
 
     }
 }

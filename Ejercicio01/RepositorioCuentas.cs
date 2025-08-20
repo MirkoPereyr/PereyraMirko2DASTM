@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,9 @@ namespace Ejercicio01
             if (cuenta == null)
                 throw new InvalidOperationException("La cuenta no existe.");
 
+            if (string.IsNullOrWhiteSpace(nuevoDniTitular))
+                throw new ArgumentException("El nuevo DNI del titular no puede ser nulo o vacio.");
+
             cuenta.dniTitular = nuevoDniTitular;
         }
 
@@ -41,6 +45,9 @@ namespace Ejercicio01
 
             if (cuenta == null)
                 throw new InvalidOperationException("La cuenta no existe.");
+
+            if (cuenta.saldo != 0)
+                throw new ArgumentException("No se puede eliminar una cuenta con saldo diferente de cero.");
 
             cuentas.Remove(cuenta);
         }
@@ -55,16 +62,14 @@ namespace Ejercicio01
             return cuentas.Any(x => x.Codigo == codigo);
         }
 
-        public List<Cuenta> ObtenerCuentasPorDniTitular()
+        public List<Cuenta> ObtenerCuentasPorDniTitular(string dniTitular)
         {
-            return cuentas.Where(x => x.DniTitular == x.DniTitular).ToList();
+            return cuentas.Where(x => x.DniTitular == dniTitular).ToList();
         }
 
         public List<Cuenta> ObtenerTodasLasCuentas()
         {
             return cuentas.ToList();
         }
-
-
     }
 }

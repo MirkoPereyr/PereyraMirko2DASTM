@@ -11,10 +11,10 @@ namespace Ejercicio01
         private RepositorioCuentas repositorioCuentas;
         private RepositorioClientes repositorioClientes;
 
-        public CentroCuentas()
+        public CentroCuentas(RepositorioClientes repoClientes, RepositorioCuentas repoCuentas)
         {
-            repositorioCuentas = new RepositorioCuentas();
-            repositorioClientes = new RepositorioClientes();
+            repositorioCuentas = repoCuentas;
+            repositorioClientes = repoClientes;
         }
 
         public void CrearCajaAhorro(string codigo, string dniTitular)
@@ -90,7 +90,7 @@ namespace Ejercicio01
             if (string.IsNullOrWhiteSpace(dniTitular))
                 throw new ArgumentException("El DNI del titular no puede ser nulo o vacio.");
 
-            return repositorioCuentas.ObtenerCuentasPorDniTitular().Where(x => x.DniTitular == dniTitular).ToList();
+            return repositorioCuentas.ObtenerCuentasPorDniTitular(dniTitular);
         }
 
 

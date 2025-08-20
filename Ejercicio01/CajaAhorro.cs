@@ -8,7 +8,7 @@ namespace Ejercicio01
 {
     public class CajaAhorro : Cuenta
     {
-        public decimal montoMaximoExtraccion = 20000;
+        public decimal montoMaximoExtraccion = 200000;
 
         public decimal MontoMaximoExtraccion
         {

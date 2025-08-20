@@ -8,7 +8,7 @@ namespace Ejercicio01
 {
     public class CuentaCorriente : Cuenta
     {
-        public decimal limiteDescubierto = -10000;
+        public decimal limiteDescubierto = -100000;
 
         public decimal LimiteDescubierto
         {

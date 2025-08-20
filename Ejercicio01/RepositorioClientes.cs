@@ -50,7 +50,7 @@ namespace Ejercicio01
             clientes.Remove(cliente);
         }
 
-        public Cliente BuscarCliente(string dni)
+        public Cliente? BuscarCliente(string dni)
         {
             return clientes.FirstOrDefault(x => x.Dni == dni);
         }
@@ -60,7 +60,7 @@ namespace Ejercicio01
             if (string.IsNullOrWhiteSpace(nombre))
                 throw new ArgumentException("El nombre no puede estar vacio.");
 
-            return clientes.Where(x => x.Nombre.ToLower().Contains(nombre.ToLower())).ToList();
+            return clientes.Where(x => x.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         public List<Cliente> ObtenerTodosLosClientes()
