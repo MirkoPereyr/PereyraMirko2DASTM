@@ -29,6 +29,7 @@ namespace Ejercicio01
 
                 var cuenta = new CajaAhorro();
                 cuenta.Codigo = codigo;
+                cuenta.Tipo = TipoCuenta.Ahorro;
                 cuenta.DniTitular = dniTitular;
                 cuenta.Saldo = 0;
 
@@ -53,6 +54,7 @@ namespace Ejercicio01
 
                 var cuenta = new CuentaCorriente();
                 cuenta.Codigo = codigo;
+                cuenta.Tipo = TipoCuenta.Corriente;
                 cuenta.DniTitular = dniTitular;
                 cuenta.Saldo = 0;
 
@@ -92,7 +94,5 @@ namespace Ejercicio01
 
             return repositorioCuentas.ObtenerCuentasPorDniTitular(dniTitular);
         }
-
-
     }
 }

@@ -8,7 +8,13 @@ namespace Ejercicio01
 {
     public enum TipoCuenta
     {
-        CajaAhorro,
-        CuentaCorriente
+        Ahorro,
+        Corriente
+    }
+
+    public enum TipoOperacion
+    {
+        Deposito, 
+        Extraccion
     }
 }

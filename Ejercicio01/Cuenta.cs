@@ -11,6 +11,7 @@ namespace Ejercicio01
         public string codigo = string.Empty;
         public string dniTitular = string.Empty;
         public decimal saldo = 0;
+        public TipoCuenta tipo;
 
         public string Codigo
         {
@@ -28,6 +29,12 @@ namespace Ejercicio01
         {
             get { return saldo; }
             set { saldo = value; }
+        }
+
+        public TipoCuenta Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
         }
 
     }
