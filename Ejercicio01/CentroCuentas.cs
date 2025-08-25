@@ -8,13 +8,13 @@ namespace Ejercicio01
 {
     public class CentroCuentas
     {
-        private RepositorioCuentas repositorioCuentas;
         private RepositorioClientes repositorioClientes;
+        private RepositorioCuentas repositorioCuentas;
 
         public CentroCuentas(RepositorioClientes repoClientes, RepositorioCuentas repoCuentas)
         {
-            repositorioCuentas = repoCuentas;
             repositorioClientes = repoClientes;
+            repositorioCuentas = repoCuentas;
         }
 
         public void CrearCajaAhorro(string codigo, string dniTitular)
@@ -29,7 +29,7 @@ namespace Ejercicio01
 
                 var cuenta = new CajaAhorro();
                 cuenta.Codigo = codigo;
-                cuenta.Tipo = TipoCuenta.Ahorro;
+                cuenta.Tipo = TipoCuenta.CajaAhorro;
                 cuenta.DniTitular = dniTitular;
                 cuenta.Saldo = 0;
 
@@ -54,7 +54,7 @@ namespace Ejercicio01
 
                 var cuenta = new CuentaCorriente();
                 cuenta.Codigo = codigo;
-                cuenta.Tipo = TipoCuenta.Corriente;
+                cuenta.Tipo = TipoCuenta.CuentaCorriente;
                 cuenta.DniTitular = dniTitular;
                 cuenta.Saldo = 0;
 
@@ -81,6 +81,27 @@ namespace Ejercicio01
                 throw new InvalidOperationException($"Error al modificar titular de la cuenta: {ex.Message}");
             }
         }
+
+        public void EliminarCuenta(string codigo)
+        {
+            try
+            {
+                var cuenta = repositorioCuentas.BuscarCuenta(codigo);
+
+                if (cuenta == null)
+                    throw new InvalidOperationException("La cuenta no existe.");
+
+                if (cuenta.Saldo != 0)
+                    throw new InvalidOperationException("No se puede eliminar una cuenta con saldo distinto de cero.");
+
+                repositorioCuentas.EliminarCuenta(codigo);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Error al eliminar cuenta: {ex.Message}");
+            }
+        }
+
 
         public Cuenta? BuscarCuenta(string codigo)
         {

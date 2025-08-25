@@ -11,10 +11,10 @@ namespace Ejercicio01
         private RepositorioClientes repositorioClientes;
         private RepositorioCuentas repositorioCuentas;
 
-        public CentroClientes()
+        public CentroClientes(RepositorioClientes repoClientes, RepositorioCuentas repoCuentas)
         {
-            repositorioClientes = new RepositorioClientes();
-            repositorioCuentas = new RepositorioCuentas();
+            repositorioClientes = repoClientes;
+            repositorioCuentas = repoCuentas;
         }
 
         public void CrearCliente(string dni, string nombre, string email, string telefono, DateTime fechaNacimiento)
@@ -39,7 +39,7 @@ namespace Ejercicio01
 			catch (Exception ex)
 			{
 
-				throw new ArgumentException($"Error al ingresar cliente: {ex.Message}");
+				throw new Exception($"Error al ingresar cliente: {ex.Message}");
 			}
         }
 
@@ -57,11 +57,10 @@ namespace Ejercicio01
             }
             catch (Exception ex)
             {
-                throw new ArgumentException($"Error al modificar cliente: {ex.Message}");
+                throw new Exception($"Error al modificar cliente: {ex.Message}");
             }
             
         }
-
 
         public void EliminarCliente(string dni)
         {
@@ -78,7 +77,7 @@ namespace Ejercicio01
             }
             catch (Exception ex)
             {
-                throw new ArgumentException($"Error al eliminar cliente: {ex.Message}");
+                throw new Exception($"Error al eliminar cliente: {ex.Message}");
             }
         }
 
@@ -97,6 +96,11 @@ namespace Ejercicio01
         public List<Cliente> ObtenerTodosLosClientes()
         {
             return repositorioClientes.ObtenerTodosLosClientes();
+        }
+
+        public bool ExisteCliente(string dni)
+        {
+            return repositorioClientes.ExisteCliente(dni);
         }
     }
 }

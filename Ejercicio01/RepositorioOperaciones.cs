@@ -28,7 +28,7 @@ namespace Ejercicio01
             return operaciones.Where(x => x.CodigoCuenta == codigoCuenta).ToList();
         }
 
-        public List<Operacion> ObtenerTodasLasOperaciones(string codigoCuenta)
+        public List<Operacion> ObtenerTodasLasOperaciones()
         {
             return operaciones.ToList();
         }

@@ -55,5 +55,11 @@ namespace Ejercicio01
             }
         }
 
+        public override string ToString()
+        {
+            return $"DNI: {Dni} | Nombre: {Nombre} | Telefono: {Telefono} | Email: {Email} | Edad: {Edad} anios";
+        }
+
+
     }
 }

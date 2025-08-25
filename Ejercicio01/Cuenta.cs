@@ -37,5 +37,11 @@ namespace Ejercicio01
             set { tipo = value; }
         }
 
+        public override string ToString()
+        {
+            return $"Cuenta: {Codigo} | Tipo: {Tipo} | Saldo: ${Saldo} | Titular: {DniTitular}";
+        }
+
+
     }
 }

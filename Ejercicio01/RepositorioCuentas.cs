@@ -21,6 +21,9 @@ namespace Ejercicio01
             if (cuenta == null)
                 throw new ArgumentNullException("La cuenta no puede ser nula.");
 
+            if (string.IsNullOrWhiteSpace(cuenta.dniTitular))
+                throw new ArgumentException("El DNI del titular no puede ser nulo o vacio.");
+
             if (ExisteCuenta(cuenta.Codigo))
                 throw new InvalidOperationException("La cuenta ya existe.");
             cuentas.Add(cuenta);
