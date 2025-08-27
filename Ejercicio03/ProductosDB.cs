@@ -16,6 +16,7 @@ namespace Ejercicio03
         {
             List<Producto> productos = new List<Producto>();
 
+
             string query = "select id,nombre,precio from Productos";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
