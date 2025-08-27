@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ejercicio02
 {
@@ -11,23 +8,27 @@ namespace Ejercicio02
         private CentroClientes centroClientes;
         private CentroPaquetes centroPaquetes;
         private CentroSeries centroSeries;
+        private CentroCanales centroCanales;
+        private CentroEpisodios centroEpisodios;
 
-        public Empresa()
+        public EmpresaCable()
         {
             centroClientes = new CentroClientes();
             centroPaquetes = new CentroPaquetes();
             centroSeries = new CentroSeries();
+            centroCanales = new CentroCanales();
+            centroEpisodios = new CentroEpisodios();
         }
 
         // === CLIENTES ===
-        public void AgregarCliente(string codigo, string nombre, string apellido, string dni, DateTime fechaNacimiento)
+        public void AgregarCliente(string codigo, string nombre, string apellido, string dni, DateTime fechaNacimiento, Paquete paquete)
         {
-            centroClientes.CrearCliente(codigo, nombre, apellido, dni, fechaNacimiento);
+            centroClientes.AgregarCliente(codigo, nombre, apellido, dni, fechaNacimiento, paquete);
         }
 
-        public void ModificarCliente(string dni, string nuevoNombre, string nuevoApellido, DateTime nuevaFechaNacimiento)
+        public void ModificarCliente(string dni, string nuevoNombre, string nuevoApellido, DateTime nuevaFechaNacimiento, Paquete nuevoPaquete)
         {
-            centroClientes.ModificarCliente(dni, nuevoNombre, nuevoApellido, nuevaFechaNacimiento);
+            centroClientes.ModificarCliente(dni, nuevoNombre, nuevoApellido, nuevaFechaNacimiento, nuevoPaquete);
         }
 
         public void EliminarCliente(string dni)
@@ -45,30 +46,15 @@ namespace Ejercicio02
             return centroClientes.BuscarCliente(dni);
         }
 
-        public void AsignarPaqueteACliente(string dni, string nombrePaquete)
-        {
-            centroClientes.AsignarPaquete(dni, nombrePaquete);
-        }
-
         // === PAQUETES ===
-        public void CrearPaqueteSilver(string nombre, decimal precioBase)
+        public void CrearPaquete(string nombre, decimal precioBase, List<Canal> canales, TipoPaquete tipo)
         {
-            centroPaquetes.CrearPaqueteSilver(nombre, precioBase);
+            centroPaquetes.CrearPaquete(nombre, precioBase, canales, tipo);
         }
 
-        public void CrearPaquetePremium(string nombre, decimal precioBase)
+        public List<Paquete> ObtenerPaquetes()
         {
-            centroPaquetes.CrearPaquetePremium(nombre, precioBase);
-        }
-
-        public void AgregarCanalAPaquete(string nombrePaquete, Canal canal)
-        {
-            centroPaquetes.AgregarCanalAPaquete(nombrePaquete, canal);
-        }
-
-        public List<Paquete> ObtenerTodosLosPaquetes()
-        {
-            return centroPaquetes.ObtenerTodos();
+            return centroPaquetes.ObtenerPaquetes();
         }
 
         public Paquete? BuscarPaquete(string nombre)
@@ -76,20 +62,15 @@ namespace Ejercicio02
             return centroPaquetes.BuscarPorNombre(nombre);
         }
 
-        public string ObtenerPaqueteMasVendido()
-        {
-            return centroClientes.ObtenerPaqueteMasVendido();
-        }
-
-        public decimal CalcularRecaudacionMensual()
-        {
-            return centroClientes.CalcularRecaudacionMensual();
-        }
-
         // === SERIES ===
-        public void CrearSerie(string nombre, int temporadas, int episodios, double duracion, double ranking, Genero genero, string director)
+        public void CrearSerie(string nombre, int temporadas, List<Episodio> episodios, int duracion, double ranking, Genero genero, string director)
         {
             centroSeries.CrearSerie(nombre, temporadas, episodios, duracion, ranking, genero, director);
+        }
+
+        public List<Serie> ObtenerSeries()
+        {
+            return centroSeries.ObtenerTodas();
         }
 
         public Serie? BuscarSerie(string nombre)
@@ -102,29 +83,31 @@ namespace Ejercicio02
             return centroSeries.ObtenerSeriesRankingMayorA(minimo);
         }
 
-        public List<Serie> ObtenerTodasLasSeries()
-        {
-            return centroSeries.ObtenerTodas();
-        }
-
         // === CANALES ===
-        public void CrearCanal(string nombre)
+        public void CrearCanal(string nombre, List<Serie> series)
         {
-            centroSeries.CrearCanal(nombre);
+            centroCanales.CrearCanal(nombre, series);
         }
 
-        public void AgregarSerieACanal(string nombreCanal, Serie serie)
+        public List<Canal> ObtenerCanales()
         {
-            centroSeries.AgregarSerieACanal(nombreCanal, serie);
-        }
-
-        public List<Canal> ObtenerTodosLosCanales()
-        {
-            return centroSeries.ObtenerTodosLosCanales();
+            return centroCanales.ObtenerCanales();
         }
 
         public Canal? BuscarCanal(string nombre)
         {
-            return centroSeries.BuscarCanal(nombre);
+            return centroCanales.BuscarCanal(nombre);
+        }
+
+        // === EPISODIOS ===
+        public void CrearEpisodio(string nombre, int duracion)
+        {
+            centroEpisodios.CrearEpisodio(nombre, duracion);
+        }
+
+        public List<Episodio> ObtenerEpisodios()
+        {
+            return centroEpisodios.ObtenerEpisodios();
         }
     }
+}

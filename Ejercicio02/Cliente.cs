@@ -59,7 +59,8 @@ namespace Ejercicio02
 
         public decimal ObtenerTotalAbono()
         {
-            return PaqueteContratado != null ? PaqueteContratado.CalcularPrecio() : 0;
+            return PaqueteContratado != null ? PaqueteContratado.CalcularPrecioFinal() : 0;
         }
+
     }
 }

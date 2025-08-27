@@ -15,15 +15,19 @@ namespace Ejercicio02
             repositorioEpisodios = new RepositorioEpisodios();
         }
 
-        public void CrearEpisodio(string nombre)
+        public void CrearEpisodio(string nombre, int duracion)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(nombre))
                     throw new Exception("El nombre del episodio es obligatorio.");
 
+                if (duracion <= 0)
+                    throw new Exception("La duración del episodio debe ser mayor a cero.");
+
                 Episodio episodio = new Episodio();
                 episodio.Nombre = nombre;
+                episodio.Duracion = duracion;
 
                 repositorioEpisodios.AgregarEpisodio(episodio);
             }
