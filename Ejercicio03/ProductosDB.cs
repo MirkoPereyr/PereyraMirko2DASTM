@@ -10,7 +10,7 @@ namespace Ejercicio03
     public class ProductosDB
     {
         private string connectionString
-            = "Server=localhost\\SQLEXPRESS;Database=CrudWindowsForm;Trusted_Connection=True;";
+            = "Server=localhost\\SQLEXPRESS;Database=CrudWindowsForm;User Id=Mirko;Password=M!rko2006#Server;";
 
         public List<Producto> Obtener()
         {
